@@ -17,5 +17,7 @@ jobs:
           REL_AUTH="Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"
           REL_RES=$(curl -s -H "$REL_AUTH" -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/$GITHUB_REPOSITORY/releases/tags/${{ github.event.inputs.release }})
           ASSET_URL=$(echo $REL_RES | jq -r '.assets | map(select(.name == "app-release.apk"))[0].url')
-          mkdir -p app/build/outputs/apk/release
+          REL_PATH="app/build/outputs/apk/release"
+          mkdir -p $REL_PATH
           curl -s -J -L -H "$REL_AUTH" -H "Accept: application/octet-stream" "$ASSET_URL" -o app/build/outputs/apk/release/app-release.apk
+          ls -l $REL_PATH
