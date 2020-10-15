@@ -21,4 +21,4 @@ jobs:
           mkdir -p $REL_PATH
           echo $ASSET_URL
           curl -s -J -L -H "$REL_AUTH" -H "Accept: application/octet-stream" "$ASSET_URL" -o app/build/outputs/apk/release/app-release.apk
-          ls -l $REL_PATH
+          ls -lh $REL_PATH
