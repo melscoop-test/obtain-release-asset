@@ -1,4 +1,4 @@
-name: publish
+name: default publish attempt
 
 on:
   workflow_dispatch:
