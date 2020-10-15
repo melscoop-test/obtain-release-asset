@@ -1,4 +1,4 @@
-name: default publish attempt
+name: publish modified
 
 on:
   workflow_dispatch:
@@ -19,6 +19,6 @@ jobs:
           ASSET_URL=$(echo $REL_RES | jq -r '.assets | map(select(.name == "app-release.apk"))[0].url')
           REL_PATH="app/build/outputs/apk/release"
           mkdir -p $REL_PATH
-          curl -s -J -L -H "$REL_AUTH" -H "Accept: application/octet-stream" "$ASSET_URL" -o app/build/outputs/apk/release/app-release.apk
           echo $ASSET_URL
+          curl -s -J -L -H "$REL_AUTH" -H "Accept: application/octet-stream" "$ASSET_URL" -o app/build/outputs/apk/release/app-release.apk
           ls -l $REL_PATH
